@@ -257,5 +257,12 @@ delete from customer where WORKING_AREA='New York';
 
 <img width="1942" height="1257" alt="image" src="https://github.com/user-attachments/assets/f0d83aaf-6836-41aa-ba19-0ac207606fdc" />
 
+**Screenshot of Module 2 SEB Completion Grades:**
+
+<img width="1994" height="971" alt="image" src="https://github.com/user-attachments/assets/d3ba5220-d09f-4dbb-b480-b9c7455e5c68" />
+
+
+
+
 ## RESULT
 Thus, the SQL queries to implement DML commands have been executed successfully.
