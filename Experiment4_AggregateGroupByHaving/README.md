@@ -194,6 +194,12 @@ select address,SUM(salary) from customer1 group by address having sum(salary)>20
 
 <img width="1742" height="1146" alt="image" src="https://github.com/user-attachments/assets/8e3c60bc-8d86-4050-8ef2-2be2ff932d79" />
 
+**Screenshot of Module 3 SEB Completion Grades:**
+
+<img width="1943" height="918" alt="image" src="https://github.com/user-attachments/assets/97720c16-a7ac-48cd-8fda-3e9b4fff580d" />
+
+
+
 
 ## RESULT
 Thus, the SQL queries to implement aggregate functions, GROUP BY, and HAVING clause have been executed successfully.
