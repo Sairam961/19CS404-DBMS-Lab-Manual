@@ -105,123 +105,160 @@ CREATE TABLE Table_Name (
 
 **Question 1**
 --
--- Paste Question 1 here
-
-```sql
--- Paste your SQL code below for Question 1
+Create a table named Department with the following constraints:
+DepartmentID as INTEGER should be the primary key.
+DepartmentName as TEXT should be unique and not NULL.
+Location as TEXT.
+```
+create table Department(DepartmentID INTEGER PRIMARY KEY,DepartmentName text UNIQUE NOT NULL,Location text);
 ```
 
 **Output:**
 
-![Output1](output.png)
+<img width="1739" height="771" alt="image" src="https://github.com/user-attachments/assets/a5a651cd-ef00-4448-bcad-3eaad949d39f" />
 
 **Question 2**
 ---
--- Paste Question 2 here
+Create a table named Customers with the following columns:
 
-```sql
--- Paste your SQL code below for Question 2
+CustomerID as INTEGER
+Name as TEXT
+Email as TEXT
+JoinDate as DATETIME
+```
+create table Customers(CustomerID INTEGER,Name TEXT,Email TEXT,JoinDate DATETIME);
 ```
 
 **Output:**
 
-![Output2](output.png)
+<img width="1811" height="1032" alt="image" src="https://github.com/user-attachments/assets/abc3f1dc-5cf3-4a63-9346-0c8a46520086" />
 
 **Question 3**
 ---
--- Paste Question 3 here
+Insert a student with RollNo 201, Name David Lee, Gender M, Subject Physics, and MARKS 92 into the Student_details table.
 
-```sql
--- Paste your SQL code below for Question 3
+
+```
+insert into Student_details (RollNo,Name,Gender,Subject,MARKS) values (201,"David Lee","M","Physics",92);
 ```
 
 **Output:**
 
-![Output3](output.png)
+<img width="1854" height="913" alt="image" src="https://github.com/user-attachments/assets/7d960a29-bc48-4a57-b3ae-bfb4fd965631" />
 
 **Question 4**
 ---
--- Paste Question 4 here
+Create a table named Shipments with the following constraints:
+ShipmentID as INTEGER should be the primary key.
+ShipmentDate as DATE.
+SupplierID as INTEGER should be a foreign key referencing Suppliers(SupplierID).
+OrderID as INTEGER should be a foreign key referencing Orders(OrderID).
 
-```sql
--- Paste your SQL code below for Question 4
+```
+create table Shipments (ShipmentID INTEGER PRIMARY KEY,ShipmentDate DATE,SupplierID INTEGER,OrderID INTEGER,FOREIGN KEY(SupplierID) REFERENCES Suppliers(SupplierID),FOREIGN KEY(OrderID) REFERENCES Orders(OrderID));
 ```
 
 **Output:**
 
-![Output4](output.png)
+<img width="1807" height="919" alt="image" src="https://github.com/user-attachments/assets/ffec72e1-3283-4182-8dfb-fb47958909b7" />
 
 **Question 5**
 ---
--- Paste Question 5 here
+Insert all employees from Former_employees into Employee
 
-```sql
--- Paste your SQL code below for Question 5
+Table attributes are EmployeeID, Name, Department, Salary
+
+```
+insert into Employee(EmployeeID,Name,Department,Salary) select EmployeeID,Name,Department,Salary from Former_employees;
 ```
 
 **Output:**
 
-![Output5](output.png)
+<img width="1722" height="945" alt="image" src="https://github.com/user-attachments/assets/16eed565-1261-4763-97e2-39c7505128dd" />
 
 **Question 6**
 ---
--- Paste Question 6 here
+Create a table named Employees with the following constraints:
 
-```sql
--- Paste your SQL code below for Question 6
+EmployeeID should be the primary key.
+FirstName and LastName should be NOT NULL.
+Email should be unique.
+Salary should be greater than 0.
+DepartmentID should be a foreign key referencing the Departments table.
+
+```
+create table Employees(EmployeeID int PRIMARY KEY,FirstName NOT NULL,LastName not null,Email unique,Salary check(Salary>0),DepartmentID,FOREIGN KEY(DepartmentID) REFERENCES Departments(DepartmentID));
 ```
 
 **Output:**
 
-![Output6](output.png)
+<img width="1880" height="1016" alt="image" src="https://github.com/user-attachments/assets/384addf6-c177-47fa-8d80-a9bc1c22f393" />
 
 **Question 7**
 ---
--- Paste Question 7 here
+Write a SQL Query  to Rename attribute "name" to "first_name"  and add mobilenumber as number ,DOB as Date,State as varchar(30) in the table Companies. 
 
-```sql
--- Paste your SQL code below for Question 7
+```
+alter table Companies rename column name to first_name;
+alter table Companies add column mobilenumb number;
+alter table Companies add column DOB Date;
+alter table Companies add column State varchar(30);
 ```
 
 **Output:**
 
-![Output7](output.png)
+<img width="1832" height="1027" alt="image" src="https://github.com/user-attachments/assets/add64a6d-8fba-43f6-b245-af927f9ba1f3" />
 
 **Question 8**
 ---
--- Paste Question 8 here
+Write a SQL query to modify the Student_details table by adding a new column Email of type VARCHAR(50) and updating the column MARKS to have a default value of 0.
 
-```sql
--- Paste your SQL code below for Question 8
+```
+alter table Student_details add column Email VARCHAR(50);
+alter table Student_details add column MARKS INT DEFAULT 0;
 ```
 
 **Output:**
 
-![Output8](output.png)
+<img width="1918" height="900" alt="image" src="https://github.com/user-attachments/assets/e57238a4-c751-4136-bca3-f2f69efa3410" />
 
 **Question 9**
 ---
--- Paste Question 9 here
+create a table named jobs including columns job_id, job_title, min_salary and max_salary, and make sure that, the default value for job_title is blank and min_salary is 8000 and max_salary is NULL will be entered automatically at the time of insertion if no value assigned for the specified columns.
 
-```sql
--- Paste your SQL code below for Question 9
+```
+CREATe table jobs (job_id,job_title DEFAULT ' ',min_salary DEFAULT 8000,max_salary DEFAULT NULL);
 ```
 
 **Output:**
 
-![Output9](output.png)
+<img width="1866" height="999" alt="image" src="https://github.com/user-attachments/assets/d20dd8a0-d0f3-41be-b19e-1513e7d2110f" />
 
 **Question 10**
 ---
--- Paste Question 10 here
+In the Books table, insert a record where some fields are NULL, another record where all fields are filled without any NULL values, and a third record where some fields are filled, and others are left as NULL.
 
-```sql
--- Paste your SQL code below for Question 10
+ISBN             Title                      Author           Publisher   Year
+---------------  -------------------------  ---------------  ----------  ----------
+978-1234567890   Introduction to AI         John Doe
+978-9876543210   Deep Learning              Jane Doe         TechPress   2022
+978-1122334455   Cybersecurity Essentials   Alice Smith                  2021
+```
+insert into Books(ISBN,Title,Author) values ('978-1234567890','Introduction to AI','John Doe');
+insert into Books(ISBN,Title,Author,Publisher,Year) values('978-9876543210','Deep Learning','Jane Doe','TechPress',2022);
+insert into Books(ISBN,Title,Author,Year) values('978-1122334455','Cybersecurity Essentials','Alice Smith',2021);
 ```
 
 **Output:**
 
-![Output10](output.png)
+<img width="1833" height="953" alt="image" src="https://github.com/user-attachments/assets/da96fe96-b490-488e-ad7c-cb20db48175c" />
+
+
+**Screenshot of Module 1 SEB Completion Grades:**
+
+<img width="1983" height="820" alt="image" src="https://github.com/user-attachments/assets/ef387896-121a-4976-9e6a-23447744e748" />
+
+
 
 
 ## RESULT
