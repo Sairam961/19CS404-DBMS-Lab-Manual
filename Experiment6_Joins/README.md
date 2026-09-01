@@ -1,4 +1,4 @@
-# Experiment 6: Joins
+<img width="2063" height="905" alt="image" src="https://github.com/user-attachments/assets/e0564375-5d22-4ba9-971e-c2f0f0917df9" /># Experiment 6: Joins
 
 ## AIM
 To study and implement different types of joins.
@@ -461,6 +461,12 @@ JOIN
 **Output:**
 
 <img width="1503" height="1287" alt="image" src="https://github.com/user-attachments/assets/18fb08cd-af67-4da5-8b1a-5f343915051b" />
+
+**Screenshot of Module 5 SEB Completion Grades:**
+
+<img width="2063" height="905" alt="image" src="https://github.com/user-attachments/assets/cdd0ce49-14f6-4d5e-a4df-08a487d819b3" />
+
+
 
 
 ## RESULT
