@@ -120,31 +120,39 @@ A popular restaurant wants to manage reservations, orders, and billing.
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_restaurant.png)
+<img width="1130" height="1134" alt="image" src="https://github.com/user-attachments/assets/b7b68c7a-c479-4d95-aa66-8e45069a60b5" />
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| :--- | :--- | :--- |
+| **Customer** | Customer_ID (PK), Name, Phone | Stores restaurant customer details |
+| **Reservation** | Reservation_ID (PK), Customer_ID (FK), Table_ID (FK), Waiter_ID (FK), Date, Time, num_guests | Details of table reservations |
+| **Table** | Table_ID (PK), Capacity | Physical dining tables in the restaurant |
+| **Waiter** | Waiter_ID (PK), Name, Phone | Restaurant service staff |
+| **Bill** | Bill_ID (PK), Reservation_ID (FK), Total, Service_charge | Invoice generated for a reservation |
+| **Order** | Order_ID (PK), Reservation_ID (FK), order_time | Food orders placed under a reservation |
+| **Dish** | Dish_ID (PK), Category_ID (FK), Name, Price | Menu items available for ordering |
+| **Category** | Category_ID (PK), Category_name | Classifies dishes (e.g., Starter, Main, Dessert) |
+| **Order_item** | Order_ID (PK, FK), Dish_ID (PK, FK), Subtotal, Quantity | Line item details linking ordered dishes to orders |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| :--- | :--- | :--- | :--- |
+| **places** | 1:N | Customer: Partial, Reservation: Total | A customer places one or more table reservations |
+| **assigns** | 1:N | Table: Partial, Reservation: Total | Each reservation is assigned a specific table |
+| **served_by** | 1:N | Waiter: Partial, Reservation: Total | Each reservation is attended to by a waiter |
+| **generates** | 1:1 | Reservation: Total, Bill: Total | A reservation generates exactly one final bill |
+| **contains** | 1:N | Reservation: Partial, Order: Total | A reservation can contain multiple food orders |
+| **Includes** | M:N | Order: Total, Dish: Total | Orders include multiple dishes (resolved via Order_item) |
+| **classifies** | 1:N | Category: Total, Dish: Total | Each dish belongs to a specific menu category |
 
 ### Assumptions
-- 
-- 
-- 
 
+* Walk-in customers are registered as regular customers and assigned an immediate reservation record.
+* Bills are calculated based on the total sum of all order items linked to the reservation plus the service charge.
+* A single reservation can place multiple food orders during their dining session.
 ---
 
 ## Instructions for Students
