@@ -1,5 +1,3 @@
-<img width="2063" height="905" alt="image" src="https://github.com/user-attachments/assets/e0564375-5d22-4ba9-971e-c2f0f0917df9" /># Experiment 6: Joins
-
 ## AIM
 To study and implement different types of joins.
 
