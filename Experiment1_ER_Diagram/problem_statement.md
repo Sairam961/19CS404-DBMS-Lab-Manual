@@ -23,30 +23,35 @@ FlexiFit Gym wants a database to manage its members, trainers, and fitness progr
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_fitness.png)
+<img width="1148" height="954" alt="image" src="https://github.com/user-attachments/assets/8f93afaf-488e-4762-a8a1-8c57d63fe498" />
 
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| :--- | :--- | :--- |
+| **Program** | Program_ID (PK), Program_name, Description | Fitness courses offered by the club |
+| **Trainer** | Trainer_ID (PK), Specialization, Name | Instructors assigned to fitness programs |
+| **Member** | Member_ID (PK), Name, Start_date, Membership_type | Registered gym members |
+| **Session** | Session_ID (PK), Trainer_ID (FK), Member_ID (FK), Date, Time | Personal training sessions |
+| **Attendance** | Attendance_ID (PK), Session_ID (FK), Date | Attendance records for personal sessions |
+| **Payment** | Payment_ID (PK), Member_ID (FK), Date, Amount | Payments made for memberships and sessions |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| :--- | :--- | :--- | :--- |
+| **Assigned** | N:M | Program: Partial, Trainer: Partial | Trainers are assigned to handle specific fitness programs |
+| **Joins** | M:N | Member: Partial, Program: Partial | Members can register for and join multiple fitness programs |
+| **Conducts** | 1:N | Trainer: Partial, Session: Total | A trainer conducts multiple personal training sessions |
+| **Books** | 1:N | Member: Partial, Session: Total | A member can book multiple personal training sessions |
+| **records** | 1:N | Session: Partial, Attendance: Total | Each session records attendance instances |
+| **makes** | 1:N | Member: Partial, Payment: Total | A member makes payments for memberships or booked sessions |
 
 ### Assumptions
-- 
-- 
-- 
+
+* Personal training sessions are booked individually between one member and one trainer.
+* Attendance is tracked per booked session to verify attendance history.
+* A member can make multiple payments covering different membership terms or session packages over time.
 
 ---
 
