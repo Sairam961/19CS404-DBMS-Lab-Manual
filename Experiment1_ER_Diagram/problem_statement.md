@@ -71,14 +71,14 @@ The Central Library wants to manage book lending and cultural events.
 
 | Entity | Attributes (PK, FK) | Notes |
 | :--- | :--- | :--- |
-| **Room** | **`Room_ID` (PK)**, `Capacity`, `Room_no` | Represents room spaces available for study or events |
-| **Booking** | **`Booking_ID` (PK)**, **`Room_ID` (FK)**, **`Member_ID` (FK)**, `Date`, `Purpose` | Tracks room reservations made by members |
-| **Member** | **`Member_ID` (PK)**, `Name`, `Email`, `Phone` | Registered library members |
-| **Book** | **`Book_ID` (PK)**, `Title`, `Author`, `Category` | Cataloged books in the library |
-| **Loan** | **`Loan_ID` (PK)**, **`Member_ID` (FK)**, **`Book_ID` (FK)**, `due_date`, `return_data` | Tracks borrowing history and due dates |
-| **Fine** | **`Fine_ID` (PK)**, **`Loan_ID` (FK)**, `Amount` | Overdue charges associated with a specific loan |
-| **Event** | **`Event_ID` (PK)**, **`Room_ID` (FK)**, `Venue`, `Date` | Cultural events organized by the library |
-| **Speaker** | **`Speaker_ID` (PK)**, `Name`, `Bio` | Guest speakers or authors featured at events |
+| **Room** | Room_ID (PK), Capacity, Room_no | Represents room spaces available for study or events |
+| **Booking** | Booking_ID (PK), Room_ID (FK), Member_ID (FK), Date, Purpose | Tracks room reservations made by members |
+| **Member** | Member_ID (PK), Name, Email, Phone | Registered library members |
+| **Book** | Book_ID (PK), Title, Author, Category | Cataloged books in the library |
+| **Loan** | Loan_ID (PK), Member_ID (FK), Book_ID (FK), due_date, return_data | Tracks borrowing history and due dates |
+| **Fine** | Fine_ID (PK), Loan_ID (FK), Amount | Overdue charges associated with a specific loan |
+| **Event** | Event_ID (PK), Room_ID (FK), Venue, Date | Cultural events organized by the library |
+| **Speaker** | Speaker_ID (PK), Name, Bio | Guest speakers or authors featured at events |
 
 ### Relationships and Constraints
 
