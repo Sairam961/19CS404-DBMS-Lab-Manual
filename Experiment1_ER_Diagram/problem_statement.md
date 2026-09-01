@@ -70,20 +70,28 @@ The Central Library wants to manage book lending and cultural events.
 ### Entities and Attributes
 
 | Entity | Attributes (PK, FK) | Notes |
-|--------|--------------------|-------|
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
-|        |                    |       |
+| :--- | :--- | :--- |
+| **Room** | **`Room_ID` (PK)**, `Capacity`, `Room_no` | Represents room spaces available for study or events |
+| **Booking** | **`Booking_ID` (PK)**, **`Room_ID` (FK)**, **`Member_ID` (FK)**, `Date`, `Purpose` | Tracks room reservations made by members |
+| **Member** | **`Member_ID` (PK)**, `Name`, `Email`, `Phone` | Registered library members |
+| **Book** | **`Book_ID` (PK)**, `Title`, `Author`, `Category` | Cataloged books in the library |
+| **Loan** | **`Loan_ID` (PK)**, **`Member_ID` (FK)**, **`Book_ID` (FK)**, `due_date`, `return_data` | Tracks borrowing history and due dates |
+| **Fine** | **`Fine_ID` (PK)**, **`Loan_ID` (FK)**, `Amount` | Overdue charges associated with a specific loan |
+| **Event** | **`Event_ID` (PK)**, **`Room_ID` (FK)**, `Venue`, `Date` | Cultural events organized by the library |
+| **Speaker** | **`Speaker_ID` (PK)**, `Name`, `Bio` | Guest speakers or authors featured at events |
 
 ### Relationships and Constraints
 
 | Relationship | Cardinality | Participation | Notes |
-|--------------|------------|---------------|-------|
-|              |            |               |       |
-|              |            |               |       |
-|              |            |               |       |
+| :--- | :--- | :--- | :--- |
+| **Reserved** | 1:N | Room: Partial, Booking: Total | A room can have multiple bookings; each booking belongs to one room |
+| **Places** | 1:N | Member: Partial, Booking: Total | A member can place multiple room bookings |
+| **Borrows** | 1:N | Member: Partial, Loan: Total | A member can have multiple loan transactions |
+| **Book-Loan** | 1:N | Book: Partial, Loan: Total | A book can be borrowed multiple times across separate loans |
+| **Incurs** | 1:1 | Loan: Partial, Fine: Total | A loan incurs at most one fine when overdue |
+| **Registers** | M:N | Member: Partial, Event: Partial | Members can register for multiple events; events have multiple members |
+| **Hosts** | N:1 | Event: Total, Room: Partial | Many events can be hosted in a room over time |
+| **Features** | M:N | Event: Partial, Speaker: Partial | Events can feature multiple speakers; speakers can present at multiple events |
 
 ### Assumptions
 - 
