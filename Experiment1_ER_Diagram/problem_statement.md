@@ -65,7 +65,7 @@ The Central Library wants to manage book lending and cultural events.
 
 ### ER Diagram:
 *Paste or attach your diagram here*  
-![ER Diagram](er_diagram_library.png)
+<img width="623" height="215" alt="image" src="https://github.com/user-attachments/assets/f9ead1a5-4c23-498a-96cf-268c8cd2ea68" />
 
 ### Entities and Attributes
 
@@ -94,10 +94,10 @@ The Central Library wants to manage book lending and cultural events.
 | **Features** | M:N | Event: Partial, Speaker: Partial | Events can feature multiple speakers; speakers can present at multiple events |
 
 ### Assumptions
-- 
-- 
-- 
-
+* A Fine is only generated when a borrowed book is returned past its due_date.
+* Each physical copy of a book has a unique Book_ID to track individual loans.
+* Rooms can be reserved directly by members for private study or assigned by library administration to host events.
+* An Event can feature multiple speakers, and each speaker can be associated with multiple events.
 ---
 
 # Scenario C: Restaurant Table Reservation & Ordering
