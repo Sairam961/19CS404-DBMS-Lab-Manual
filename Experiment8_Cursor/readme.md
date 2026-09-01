@@ -82,20 +82,20 @@ The program should display the employee details or an error message.
 **Program:**
 ```
 DECLARE
-    CURSOR c_std IS
-        SELECT name, dept FROM students;
-    v_name students.name%TYPE;
-    v_dept students.dept%TYPE;
+    CURSOR c_emp IS
+        SELECT emp_name, designation FROM employees;
+    v_name employees.emp_name%TYPE;
+    v_desig employees.designation%TYPE;
     v_count NUMBER := 0;
 BEGIN
-    OPEN c_std;
+    OPEN c_emp;
     LOOP
-        FETCH c_std INTO v_name, v_dept;
-        EXIT WHEN c_std%NOTFOUND;
+        FETCH c_emp INTO v_name, v_desig;
+        EXIT WHEN c_emp%NOTFOUND;
         v_count := v_count + 1;
-        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Dept: ' || v_dept);
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Designation: ' || v_desig);
     END LOOP;
-    CLOSE c_std;
+    CLOSE c_emp;
     IF v_count = 0 THEN
         RAISE NO_DATA_FOUND;
     END IF;
@@ -110,7 +110,7 @@ END;
 
 **Result:**
 
-<img width="611" height="360" alt="image" src="https://github.com/user-attachments/assets/eb5dee1a-9212-4952-be69-4e3090775140" />
+<img width="716" height="359" alt="image" src="https://github.com/user-attachments/assets/068ac864-59bb-4260-8d27-783e4aefe977" />
 
 ---
 
@@ -134,26 +134,26 @@ The program should display the employee details within the specified salary rang
 **Program:**
 ```
 DECLARE
-    CURSOR c_std_marks (p_min NUMBER, p_max NUMBER) IS
-        SELECT name, marks FROM students WHERE marks BETWEEN p_min AND p_max;
-    v_name students.name%TYPE;
-    v_marks students.marks%TYPE;
+    CURSOR c_emp_sal (p_min NUMBER, p_max NUMBER) IS
+        SELECT emp_name, salary FROM employees WHERE salary BETWEEN p_min AND p_max;
+    v_name employees.emp_name%TYPE;
+    v_sal employees.salary%TYPE;
     v_count NUMBER := 0;
 BEGIN
-    OPEN c_std_marks(50, 90);
+    OPEN c_emp_sal(30000, 60000);
     LOOP
-        FETCH c_std_marks INTO v_name, v_marks;
-        EXIT WHEN c_std_marks%NOTFOUND;
+        FETCH c_emp_sal INTO v_name, v_sal;
+        EXIT WHEN c_emp_sal%NOTFOUND;
         v_count := v_count + 1;
-        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Marks: ' || v_marks);
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Salary: ' || v_sal);
     END LOOP;
-    CLOSE c_std_marks;
+    CLOSE c_emp_sal;
     IF v_count = 0 THEN
         RAISE NO_DATA_FOUND;
     END IF;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Error: No students meet the marks criteria.');
+        DBMS_OUTPUT.PUT_LINE('Error: No employees meet the salary criteria.');
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: An unexpected error occurred.');
 END;
@@ -162,7 +162,7 @@ END;
 
 **Result:**
 
-<img width="826" height="307" alt="image" src="https://github.com/user-attachments/assets/5aa21f46-ba8b-49c9-8c59-720e989d3e8b" />
+<img width="864" height="338" alt="image" src="https://github.com/user-attachments/assets/0c9fdee6-dcce-4dcf-a73e-e8be6cbeeafe" />
 
 
 ---
@@ -187,20 +187,26 @@ The program should display employee names with their department numbers or the a
 **Program:**
 ```
 DECLARE
-    CURSOR c_dept IS
-        SELECT name, dept FROM students;
+    CURSOR c_emp_sal (p_min NUMBER, p_max NUMBER) IS
+        SELECT emp_name, salary FROM employees WHERE salary BETWEEN p_min AND p_max;
+    v_name employees.emp_name%TYPE;
+    v_sal employees.salary%TYPE;
     v_count NUMBER := 0;
 BEGIN
-    FOR rec IN c_dept LOOP
+    OPEN c_emp_sal(30000, 60000);
+    LOOP
+        FETCH c_emp_sal INTO v_name, v_sal;
+        EXIT WHEN c_emp_sal%NOTFOUND;
         v_count := v_count + 1;
-        DBMS_OUTPUT.PUT_LINE('Name: ' || rec.name || ', Dept: ' || rec.dept);
+        DBMS_OUTPUT.PUT_LINE('Name: ' || v_name || ', Salary: ' || v_sal);
     END LOOP;
+    CLOSE c_emp_sal;
     IF v_count = 0 THEN
         RAISE NO_DATA_FOUND;
     END IF;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Error: No students found in the database.');
+        DBMS_OUTPUT.PUT_LINE('Error: No employees meet the salary criteria.');
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: An unexpected error occurred.');
 END;
@@ -209,7 +215,7 @@ END;
 
 **Result:**
 
-<img width="628" height="372" alt="image" src="https://github.com/user-attachments/assets/683cc16f-e25e-42cd-9abf-14202908e430" />
+<img width="639" height="355" alt="image" src="https://github.com/user-attachments/assets/b8b90202-cad0-4650-964a-154cacc82cb7" />
 
 ---
 
@@ -233,25 +239,25 @@ The program should display employee records or the appropriate error message if 
 **Program:**
 ```
 DECLARE
-    CURSOR c_std IS
-        SELECT * FROM students;
-    v_std_rec students%ROWTYPE;
+    CURSOR c_emp IS
+        SELECT * FROM employees;
+    v_emp_rec employees%ROWTYPE;
     v_count NUMBER := 0;
 BEGIN
-    OPEN c_std;
+    OPEN c_emp;
     LOOP
-        FETCH c_std INTO v_std_rec;
-        EXIT WHEN c_std%NOTFOUND;
+        FETCH c_emp INTO v_emp_rec;
+        EXIT WHEN c_emp%NOTFOUND;
         v_count := v_count + 1;
-        DBMS_OUTPUT.PUT_LINE('Roll: ' || v_std_rec.roll || ', Name: ' || v_std_rec.name || ', Dept: ' || v_std_rec.dept || ', Marks: ' || v_std_rec.marks);
+        DBMS_OUTPUT.PUT_LINE('ID: ' || v_emp_rec.emp_id || ', Name: ' || v_emp_rec.emp_name || ', Designation: ' || v_emp_rec.designation || ', Salary: ' || v_emp_rec.salary);
     END LOOP;
-    CLOSE c_std;
+    CLOSE c_emp;
     IF v_count = 0 THEN
         RAISE NO_DATA_FOUND;
     END IF;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
-        DBMS_OUTPUT.PUT_LINE('Error: No students found in the database.');
+        DBMS_OUTPUT.PUT_LINE('Error: No employees found in the database.');
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('Error: An unexpected error occurred.');
 END;
@@ -260,7 +266,7 @@ END;
 
 **Result:**
 
-<img width="660" height="373" alt="image" src="https://github.com/user-attachments/assets/163bd316-5876-4fae-bdd5-fde9a61621ab" />
+<img width="729" height="362" alt="image" src="https://github.com/user-attachments/assets/b0b74141-5a18-4940-bcda-cb87fd6e8b1e" />
 
 ---
 
@@ -284,23 +290,23 @@ The program should update employee salaries and display a message, or it should 
 **Program:**
 ```
 DECLARE
-    CURSOR c_std_update IS
-        SELECT marks FROM students WHERE dept = 'CS' FOR UPDATE;
-    v_marks students.marks%TYPE;
+    CURSOR c_emp_update IS
+        SELECT salary FROM employees WHERE dept_no = 10 FOR UPDATE;
+    v_sal employees.salary%TYPE;
     v_count NUMBER := 0;
 BEGIN
-    OPEN c_std_update;
+    OPEN c_emp_update;
     LOOP
-        FETCH c_std_update INTO v_marks;
-        EXIT WHEN c_std_update%NOTFOUND;
+        FETCH c_emp_update INTO v_sal;
+        EXIT WHEN c_emp_update%NOTFOUND;
         v_count := v_count + 1;
-        UPDATE students SET marks = marks + 5 WHERE CURRENT OF c_std_update;
+        UPDATE employees SET salary = salary * 1.10 WHERE CURRENT OF c_emp_update;
     END LOOP;
-    CLOSE c_std_update;
+    CLOSE c_emp_update;
     IF v_count = 0 THEN
         RAISE NO_DATA_FOUND;
     ELSE
-        DBMS_OUTPUT.PUT_LINE('Marks updated successfully for department CS.');
+        DBMS_OUTPUT.PUT_LINE('Salaries updated successfully for department 10.');
     END IF;
 EXCEPTION
     WHEN NO_DATA_FOUND THEN
@@ -313,7 +319,7 @@ END;
 
 **Result:**
 
-<img width="728" height="302" alt="image" src="https://github.com/user-attachments/assets/bb0981d2-87ed-4ffa-810c-27dcd7e72d7d" />
+<img width="850" height="284" alt="image" src="https://github.com/user-attachments/assets/0321a30c-57b7-40d5-85aa-0e73cc3110ba" />
 
 ---
 
